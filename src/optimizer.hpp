@@ -1,4 +1,3 @@
-#include "load_tsplib.hpp"
 #include <algorithm>
 #include <numeric>
 #include <random>
@@ -57,7 +56,7 @@ struct ACO {
         choice_info(dim, std::vector<float>(dim)), ants(dim, Ant(dim)),
         ant_num(ant_num), max_iter(max_iter), best(dim) {}
 
-  virtual std::vector<int> solve() = 0;
+  virtual void solve(bool, int) = 0;
 
   void calculate_nn_list(int trim = -1) {
     if (trim == -1)
@@ -73,3 +72,20 @@ struct ACO {
     }
   }
 };
+
+
+std::vector<std::vector<float>> distance_matrix(std::vector<std::pair<float, float>>& points) {
+  int dimension = points.size();
+
+  std::vector<std::vector<float>> distance_matrix(dimension, std::vector<float>(dimension, 0));
+  for (int i = 0; i < dimension; ++i) {
+    for (int j = i + 1; j < dimension; ++j) {
+      float dx = std::abs(points[i].first - points[j].first);
+      float dy = std::abs(points[i].second - points[j].second);
+      distance_matrix[i][j] = distance_matrix[j][i] =
+          std::sqrt(dx * dx + dy * dy);
+    }
+  }
+
+  return distance_matrix;
+}
