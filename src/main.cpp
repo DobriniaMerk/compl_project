@@ -2,8 +2,6 @@
 #include "load_tsplib.hpp"
 #include "load_data.hpp"
 #include <csignal>
-#include <cstddef>
-#include <cstdlib>
 #include <iostream>
 #include <ostream>
 #include <vector>

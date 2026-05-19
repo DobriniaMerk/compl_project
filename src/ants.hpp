@@ -2,6 +2,7 @@
 #include <atomic>
 #include <cmath>
 #include <cstring>
+#include <iostream>
 #include <vector>
 
 #include <chrono>
@@ -21,6 +22,9 @@ struct Metrics {
   float iter_mean_len = 0;
 };
 
+// Наследование задумавалось как красивый способ все обернуть и переиспользовать.
+// Вместо этого вышла каша. Похоже и правда надо было писать на си.
+// Выстрелил себе в ногу получается, мы же за это плюсы любим. (-:
 struct AS : ACO {
   float evaporation_rate;
   float a, b;
